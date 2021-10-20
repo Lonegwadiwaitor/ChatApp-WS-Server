@@ -16,4 +16,10 @@
       <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="ChatAppInternals, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\Desktop\ChatAppInternals.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

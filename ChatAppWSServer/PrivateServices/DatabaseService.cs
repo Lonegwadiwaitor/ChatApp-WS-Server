@@ -6,6 +6,7 @@ using ChatAppWSServer.Models;
 using LiteDB;
 using BCrypt.Net;
 using ChatAppWSServer.Models.Login;
+using ChatAppWSServer.Models.User;
 
 namespace ChatAppWSServer.PrivateServices
 {
@@ -48,6 +49,42 @@ namespace ChatAppWSServer.PrivateServices
                 return null;
 
             return results.FirstOrDefault();
+        }
+
+        public DBUser? GetUserByUID(ulong UID)
+        {
+            var loginData = _loginData.GetCollection<DBUser>("loginData");
+
+            var results = loginData.Find(x => x.UID == UID).ToList();
+            
+            if (!results.Any())
+                return null;
+            
+            return results.FirstOrDefault();
+        }
+
+        public void UpdateUser(DBUser? user)
+        {
+            if (user is null)
+                return;
+            
+            var loginData = _loginData.GetCollection<DBUser>("loginData");
+
+            loginData.Update(user);
+        }
+
+        public bool StoreDirectMessage(ulong senderUID, DirectUserMessage dmDirectUserMessage)
+        {
+            if (senderUID is 0)
+                return false;
+            
+            var userByUid = GetUserByUID(senderUID);
+            
+            userByUid?.DirectUserMessages.Add(dmDirectUserMessage);
+            
+            UpdateUser(userByUid);
+
+            return true;
         }
 
         public Token? AddTokenToUID(ulong UID)

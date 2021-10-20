@@ -16,6 +16,8 @@ namespace ChatAppWSServer.Models.Login
 
         public List<Token> tokens { get; set; } = new List<Token>();
 
+        public List<DirectUserMessage> DirectUserMessages { get; set; } = new List<DirectUserMessage>();
+
         public DBUser GetHashedUserCredentials() =>
             this;
 

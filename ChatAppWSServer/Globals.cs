@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using ChatAppWSServer.Models.Serverside;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChatAppWSServer
@@ -9,6 +11,8 @@ namespace ChatAppWSServer
 
         public static T GetService<T>() =>
             _provider.GetService<T>();
+
+        public static List<ConnectedUser> ConnectedUsers = new List<ConnectedUser>();
 
     }
 }

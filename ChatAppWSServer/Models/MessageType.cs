@@ -4,9 +4,12 @@
     {
         LOGIN,
         REGISTER,
-        CREATEMESSAGE,
+        CREATEDIRECTMESSAGE,
         OPENCHANNEL,
         GETPROFILE,
         ADDFRIEND,
+        GETFRIENDS,
+        GETFRIEND,
+        GETDIRECTMESSAGES
     }
 }
